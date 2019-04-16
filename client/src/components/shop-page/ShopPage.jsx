@@ -17,7 +17,7 @@ class Shop extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
-      <div className="container">
+      <div className="shopContainer">
         <HalfHeader title={"SHOP"} />
         <div className="page">
           <Grid container spacing={40}>
