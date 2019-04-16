@@ -7,12 +7,22 @@ import HalfHeader from "../half-header/HalfHeader";
 import testImg from "../shop-page/a.jpg";
 
 const styles = theme => ({
+  container: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
   items: {
     textAlign: "center"
   },
   images: {
     width: "100%",
     height: "100%"
+  },
+  page: {
+    marginRight: "20px",
+    marginLeft: "20px"
   }
 });
 
@@ -20,16 +30,16 @@ class ProductPage extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
-      <div className="shopContainer">
+      <div className={classes.container}>
         <HalfHeader title={"SHOP"} />
-        <div className="page">
+        <div className={classes.page}>
           <Grid container>
-            <Grid xs={6}>
+            <Grid item xs={6}>
               <div>
                 <img src={testImg} alt={""} className={classes.images} />
               </div>
             </Grid>
-            <Grid xs={6}>
+            <Grid item xs={6}>
               <div>
                 <img src={testImg} alt={""} className={classes.images} />
               </div>
