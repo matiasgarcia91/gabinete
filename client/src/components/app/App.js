@@ -4,6 +4,7 @@ import LandingPage from "../landing-page/LandingPage";
 import ShopPage from "../shop-page/ShopPage";
 import NotFound from "../not-found-page/NotFound";
 import ProductPage from "../product-page/ProductPage";
+import CartPage from "../cart-page/CartPage";
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={LandingPage} />
           <Route path="/shop" exact component={ShopPage} />
-          <Route path="/product" exact component={ProductPage} />
+          <Route path="/product" exact component={CartPage} />
           <Route component={NotFound} />
         </Switch>
       </Router>
