@@ -1,6 +1,6 @@
-export const simpleAction = () => dispatch => {
+export const addToCart = id => dispatch => {
   dispatch({
-    type: "SIMPLE_ACTION",
-    payload: "result_of_simple_action"
+    type: "ADD_TO_CART",
+    payload: id
   });
 };

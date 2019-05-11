@@ -2,11 +2,11 @@ const initialState = {
   items: []
 };
 
-export default (state = {}, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case "SIMPLE_ACTION":
+    case "ADD_TO_CART":
       return {
-        result: action.payload
+        items: [...state.items, action.payload]
       };
     default:
       return state;

@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { addToCart } from "../../actions/cartActions";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
@@ -45,8 +47,12 @@ const styles = theme => ({
 });
 
 class ProductPage extends PureComponent {
+  addToCart(id) {
+    this.props.addToCart(id);
+  }
   render() {
     const { classes } = this.props;
+    const id = "cualca";
     return (
       <div className={classes.container}>
         <HalfHeader title={"SHOP"} />
@@ -77,6 +83,7 @@ class ProductPage extends PureComponent {
               <Button
                 variant="contained"
                 className={classes.button}
+                onClick={() => this.addToCart(id)}
                 disableRipple
                 disableFocusRipple
               >
@@ -92,4 +99,16 @@ class ProductPage extends PureComponent {
     );
   }
 }
-export default withRouter(withStyles(styles)(ProductPage));
+
+const mapStateToProps = state => ({ ...state });
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: id => dispatch(addToCart(id))
+});
+
+const styledApp = withRouter(withStyles(styles)(ProductPage));
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(styledApp);
