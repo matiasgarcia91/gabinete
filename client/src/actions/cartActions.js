@@ -4,3 +4,10 @@ export const addToCart = id => dispatch => {
     payload: id
   });
 };
+
+export const deleteFromCart = id => dispatch => {
+  dispatch({
+    type: "DELETE_FROM_CART",
+    payload: id
+  });
+};

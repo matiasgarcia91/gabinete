@@ -29,18 +29,20 @@ const styles = theme => ({
 
 class CartTable extends PureComponent {
   render() {
-    const { classes } = this.props;
-    const products = [0, 1, 2];
+    const { classes, items, deleteFromCart } = this.props;
 
-    const renderCartRow = id => {
+    const renderCartRow = item => {
+      const { id, name, quantity, price } = item;
       return (
         <div className={classes.row} key={id}>
-          <div style={{ flex: 1 }}>close</div>
+          <div style={{ flex: 1 }} onClick={() => deleteFromCart(id)}>
+            close
+          </div>
           <div style={{ flex: 1 }}>image</div>
-          <div style={{ flex: 4 }}>name</div>
-          <div style={{ flex: 4 }}>QTY</div>
+          <div style={{ flex: 4 }}>{name}</div>
+          <div style={{ flex: 4 }}>{quantity}</div>
           <div style={{ flex: 2, display: "flex", justifyContent: "flex-end" }}>
-            price
+            {price}
           </div>
         </div>
       );
@@ -62,7 +64,7 @@ class CartTable extends PureComponent {
           </div>
         </div>
         <div className={classes.separator} />
-        {products.map(id => renderCartRow(id))}
+        {items.map(it => renderCartRow(it))}
         <div className={classes.separator} />
       </div>
     );
