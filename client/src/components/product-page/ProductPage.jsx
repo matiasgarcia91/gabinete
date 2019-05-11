@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import HalfHeader from "../half-header/HalfHeader";
-import testImg from "./a.jpg";
+import testImg from "../shop-page/a.jpg";
 
 const styles = theme => ({
   container: {
@@ -25,25 +25,25 @@ const styles = theme => ({
     marginLeft: "20px"
   }
 });
-class Shop extends PureComponent {
-  toProduct = id => {
-    console.log(`Product ${id}`);
-    this.props.history.push("/product");
-  };
+
+class ProductPage extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.container}>
         <HalfHeader title={"SHOP"} />
         <div className={classes.page}>
-          <Grid container spacing={40}>
-            {[0, 1, 2, 3, 4, 5].map(value => (
-              <Grid key={value} item xs={4} className={classes.items}>
-                <div onClick={() => this.toProduct(value)}>
-                  <img className={classes.images} src={testImg} alt={""} />
-                </div>
-              </Grid>
-            ))}
+          <Grid container>
+            <Grid item xs={6}>
+              <div>
+                <img src={testImg} alt={""} className={classes.images} />
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <div>
+                <img src={testImg} alt={""} className={classes.images} />
+              </div>
+            </Grid>
           </Grid>
         </div>
       </div>
@@ -51,4 +51,4 @@ class Shop extends PureComponent {
   }
 }
 
-export default withRouter(withStyles(styles)(Shop));
+export default withRouter(withStyles(styles)(ProductPage));
