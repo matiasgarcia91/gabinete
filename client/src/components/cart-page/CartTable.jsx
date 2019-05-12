@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Close from "@material-ui/icons/Close";
 
 const styles = theme => ({
   container: {
@@ -23,7 +24,34 @@ const styles = theme => ({
     height: 50,
     marginTop: 10,
     marginBottom: 10,
-    marginRight: 15
+    marginRight: 15,
+    alignItems: "center"
+  },
+  closeIcon: {
+    height: 15,
+    width: 15,
+    color: "#b0b4b6"
+  },
+  headerLabels: {
+    color: "#b0b4b6",
+    fontSize: 12
+  },
+  images: {
+    height: 60,
+    width: 60
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 25,
+    height: 20,
+    margin: 0,
+    marginTop: -10
+  },
+  textFieldInput: {
+    padding: 3,
+    paddingLeft: 8,
+    fontSize: 13
   }
 });
 
@@ -32,15 +60,31 @@ class CartTable extends PureComponent {
     const { classes, items, deleteFromCart } = this.props;
 
     const renderCartRow = item => {
-      const { id, name, quantity, price } = item;
+      const { id, name, quantity, price, image } = item;
       return (
         <div className={classes.row} key={id}>
-          <div style={{ flex: 1 }} onClick={() => deleteFromCart(id)}>
-            close
+          <div style={{ flex: 0.5 }} onClick={() => deleteFromCart(id)}>
+            <Close className={classes.closeIcon} />
           </div>
-          <div style={{ flex: 1 }}>image</div>
+          <div style={{ flex: 1 }}>
+            <img src={image} alt={""} className={classes.images} />
+          </div>
           <div style={{ flex: 4 }}>{name}</div>
-          <div style={{ flex: 4 }}>{quantity}</div>
+          <div style={{ flex: 1.8 }}>
+            <TextField
+              id="outlined-bare"
+              type="tel"
+              InputProps={{
+                classes: {
+                  input: classes.textFieldInput
+                }
+              }}
+              className={classes.textField}
+              defaultValue={quantity}
+              margin="normal"
+              variant="outlined"
+            />
+          </div>
           <div style={{ flex: 2, display: "flex", justifyContent: "flex-end" }}>
             {price}
           </div>
@@ -50,9 +94,14 @@ class CartTable extends PureComponent {
     return (
       <div className={classes.container}>
         <div className={classes.header}>
-          <div style={{ flex: 3 }}>THING</div>
-          <div style={{ flex: 1 }}>QTY</div>
+          <div className={classes.headerLabels} style={{ flex: 3 }}>
+            THING
+          </div>
+          <div className={classes.headerLabels} style={{ flex: 1 }}>
+            QTY
+          </div>
           <div
+            className={classes.headerLabels}
             style={{
               flex: 1,
               display: "flex",
