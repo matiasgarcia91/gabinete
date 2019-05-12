@@ -18,7 +18,10 @@ const styles = theme => ({
     width: "150px"
   },
   extraElement: {
-    textAlign: "end"
+    justifyContent: "flex-end",
+    display: "flex",
+    alignItems: "center",
+    paddingBottom: 15
   },
   pageTitle: {
     fontSize: "60px"
