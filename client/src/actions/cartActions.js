@@ -11,3 +11,10 @@ export const deleteFromCart = id => dispatch => {
     payload: id
   });
 };
+
+export const updateQuantity = (id, quantity) => dispatch => {
+  dispatch({
+    type: "UPDATE_QUANTITY",
+    payload: { id, quantity }
+  });
+};

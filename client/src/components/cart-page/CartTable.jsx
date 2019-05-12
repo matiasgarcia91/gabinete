@@ -2,10 +2,11 @@ import React, { PureComponent } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Close from "@material-ui/icons/Close";
+import _ from "lodash";
 
 const styles = theme => ({
   container: {
-    width: "80%",
+    width: "90%",
     display: "flex",
     flexDirection: "column"
   },
@@ -56,6 +57,13 @@ const styles = theme => ({
 });
 
 class CartTable extends PureComponent {
+  onQuantityChange = id => event => {
+    const value = event.target.value;
+    if (!value) return;
+    const parsedValue = parseInt(value, 10);
+    if (!parsedValue) return;
+    this.props.updateQuantity(id, parsedValue);
+  };
   render() {
     const { classes, items, deleteFromCart } = this.props;
 
@@ -83,18 +91,22 @@ class CartTable extends PureComponent {
               defaultValue={quantity}
               margin="normal"
               variant="outlined"
+              onChange={this.onQuantityChange(id)}
             />
           </div>
           <div style={{ flex: 2, display: "flex", justifyContent: "flex-end" }}>
-            {price}
+            {`$${price}.00`}
           </div>
         </div>
       );
     };
+
+    const subtotalValue = items.reduce((acc, it) => acc + it.price, 0);
+    const cartItems = _.sortBy(items, "name");
     return (
       <div className={classes.container}>
         <div className={classes.header}>
-          <div className={classes.headerLabels} style={{ flex: 3 }}>
+          <div style={{ flex: 3, fontSize: 15, fontWeight: "light" }}>
             THING
           </div>
           <div className={classes.headerLabels} style={{ flex: 1 }}>
@@ -113,8 +125,13 @@ class CartTable extends PureComponent {
           </div>
         </div>
         <div className={classes.separator} />
-        {items.map(it => renderCartRow(it))}
+        {cartItems.map(it => renderCartRow(it))}
         <div className={classes.separator} />
+        <div
+          style={{ display: "flex", justifyContent: "flex-end", marginTop: 20 }}
+        >
+          {`Subtotal    $${subtotalValue}.00`}
+        </div>
       </div>
     );
   }
