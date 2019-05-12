@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import ShoppingCart from "@material-ui/icons/ShoppingCartOutlined";
 
 import HalfHeader from "../half-header/HalfHeader";
 import testImg from "./a.jpg";
@@ -23,6 +24,9 @@ const styles = theme => ({
   page: {
     marginRight: "20px",
     marginLeft: "20px"
+  },
+  shoppingCart: {
+    fontSize: 40
   }
 });
 class Shop extends PureComponent {
@@ -30,11 +34,23 @@ class Shop extends PureComponent {
     console.log(`Product ${id}`);
     this.props.history.push("/product");
   };
+
+  toShoppingCart = () => {
+    this.props.history.push("/cart");
+  };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.container}>
-        <HalfHeader title={"SHOP"} />
+        <HalfHeader
+          title={"SHOP"}
+          extraElement={() => (
+            <ShoppingCart
+              className={classes.shoppingCart}
+              onClick={this.toShoppingCart}
+            />
+          )}
+        />
         <div className={classes.page}>
           <Grid container spacing={40}>
             {[0, 1, 2, 3, 4, 5].map(value => (
