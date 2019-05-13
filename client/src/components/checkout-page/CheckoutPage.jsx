@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import CartTable from "./CartTable";
 import Button from "@material-ui/core/Button";
 
 import HalfHeader from "../half-header/HalfHeader";
@@ -51,27 +50,19 @@ const styles = theme => ({
     marginTop: 40
   }
 });
-class Cart extends PureComponent {
-  toCheckout = () => {
-    this.props.history.push("/checkout");
-  };
+class Checkout extends PureComponent {
   render() {
-    const { classes, cartItems, deleteFromCart, updateQuantity } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.container}>
-        <HalfHeader title={"CART"} />
+        <HalfHeader title={""} />
         <div className={classes.page}>
-          <div className={classes.subtitle}>YOUR BAG</div>
-          <CartTable
-            items={cartItems}
-            deleteFromCart={deleteFromCart}
-            updateQuantity={updateQuantity}
-          />
+          <div className={classes.subtitle}>CHECKOUT</div>
           <div className={classes.buttonContainer}>
             <Button
               variant="contained"
               className={classes.button}
-              onClick={this.toCheckout}
+              onClick={() => console.log("to checkoout")}
               disableRipple
               disableFocusRipple
             >
@@ -84,7 +75,7 @@ class Cart extends PureComponent {
   }
 }
 
-const styledPage = withRouter(withStyles(styles)(Cart));
+const styledPage = withRouter(withStyles(styles)(Checkout));
 
 const mapStateToProps = state => {
   const { cart, products } = state;
