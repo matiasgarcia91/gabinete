@@ -4,6 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import CartTable from "./CartTable";
 import Button from "@material-ui/core/Button";
+import StripeCheckout from "react-stripe-checkout";
+import logo from "../half-header/logo_baja.png";
 
 import HalfHeader from "../half-header/HalfHeader";
 import { deleteFromCart, updateQuantity } from "../../actions/cartActions";
@@ -52,6 +54,10 @@ const styles = theme => ({
   }
 });
 class Cart extends PureComponent {
+  onToken = (token, address) => {
+    console.log({ token, address });
+  };
+
   render() {
     const { classes, cartItems, deleteFromCart, updateQuantity } = this.props;
     return (
@@ -65,15 +71,26 @@ class Cart extends PureComponent {
             updateQuantity={updateQuantity}
           />
           <div className={classes.buttonContainer}>
-            <Button
-              variant="contained"
-              className={classes.button}
-              onClick={() => console.log("to checkoout")}
-              disableRipple
-              disableFocusRipple
+            <StripeCheckout
+              stripeKey="pk_test_Mkn9LQAOXNJOjh9wW9IvGXpm003KDZhVj9"
+              amount={1}
+              token={this.onToken}
+              shippingAddress
+              zipCode={false}
+              currency="USD"
+              name="Gabinete Exquisito"
+              image={logo}
             >
-              CHECKOUT
-            </Button>
+              <Button
+                variant="contained"
+                className={classes.button}
+                onClick={this.toCheckout}
+                disableRipple
+                disableFocusRipple
+              >
+                CHECKOUT
+              </Button>
+            </StripeCheckout>
           </div>
         </div>
       </div>
