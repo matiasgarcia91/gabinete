@@ -5,7 +5,6 @@ import ShopPage from "../shop-page/ShopPage";
 import NotFound from "../not-found-page/NotFound";
 import ProductPage from "../product-page/ProductPage";
 import CartPage from "../cart-page/CartPage";
-import CheckoutPage from "../checkout-page/CheckoutPage";
 
 class App extends Component {
   render() {
@@ -16,7 +15,6 @@ class App extends Component {
           <Route path="/shop" exact component={ShopPage} />
           <Route path="/product" exact component={ProductPage} />
           <Route path="/cart" exact component={CartPage} />
-          <Route path="/checkout" exact component={CheckoutPage} />
           <Route component={NotFound} />
         </Switch>
       </Router>

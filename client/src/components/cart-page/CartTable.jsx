@@ -101,7 +101,10 @@ class CartTable extends PureComponent {
       );
     };
 
-    const subtotalValue = items.reduce((acc, it) => acc + it.price, 0);
+    const subtotalValue = items.reduce(
+      (acc, it) => acc + it.price * it.quantity,
+      0
+    );
     const cartItems = _.sortBy(items, "name");
     return (
       <div className={classes.container}>
