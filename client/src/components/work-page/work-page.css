@@ -1,0 +1,12 @@
+.options {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 55px;
+  display: inline-block;
+  padding-top: 5px;
+  border-bottom: 2px solid #f8f5ed;
+}
+
+.options:hover {
+  border-bottom: 2px solid;
+}

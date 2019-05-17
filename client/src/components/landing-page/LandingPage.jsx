@@ -44,6 +44,11 @@ class LandingPage extends PureComponent {
   toShop = () => {
     this.props.history.push("/shop");
   };
+
+  toStudio = () => {
+    this.props.history.push("/studio");
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -54,7 +59,10 @@ class LandingPage extends PureComponent {
         >
           <div className={classes.leftText}>SHOP</div>
         </div>
-        <div className={classNames(classes.sides, classes.rightSide)}>
+        <div
+          className={classNames(classes.sides, classes.rightSide)}
+          onClick={this.toStudio}
+        >
           <div className={classes.rightText}>STUDIO</div>
         </div>
       </div>
