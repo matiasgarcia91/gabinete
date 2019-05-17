@@ -4,7 +4,7 @@
   line-height: 55px;
   display: inline-block;
   padding-top: 5px;
-  border-bottom: 2px solid #f8f5ed;
+  border-bottom: 2px hidden #f8f5ed;
 }
 
 .options:hover {
