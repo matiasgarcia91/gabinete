@@ -24,7 +24,9 @@ const styles = theme => ({
     paddingBottom: 15
   },
   pageTitle: {
-    fontSize: "60px"
+    paddingTop: 20,
+    paddingLeft: 20,
+    fontSize: "50px"
   }
 });
 
