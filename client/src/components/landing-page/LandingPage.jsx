@@ -7,7 +7,8 @@ const styles = theme => ({
   landingContainer: {
     display: "flex",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    zIndex: 0
   },
   sides: {
     height: "100%",
@@ -37,6 +38,20 @@ const styles = theme => ({
     right: "180px",
     bottom: "250px",
     fontSize: "80px"
+  },
+  sign: {
+    backgroundColor: "black",
+    color: "white",
+    width: "70%",
+    height: 80,
+    fontSize: 30,
+    zIndex: 2,
+    position: "absolute",
+    top: 80,
+    left: "15%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 
@@ -52,20 +67,23 @@ class LandingPage extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.landingContainer}>
-        <div
-          className={classNames(classes.sides, classes.leftSide)}
-          onClick={this.toShop}
-        >
-          <div className={classes.leftText}>SHOP</div>
+      <React.Fragment>
+        <div className={classes.landingContainer}>
+          <div
+            className={classNames(classes.sides, classes.leftSide)}
+            onClick={this.toShop}
+          >
+            <div className={classes.leftText}>SHOP</div>
+          </div>
+          <div
+            className={classNames(classes.sides, classes.rightSide)}
+            onClick={this.toStudio}
+          >
+            <div className={classes.rightText}>STUDIO</div>
+          </div>
         </div>
-        <div
-          className={classNames(classes.sides, classes.rightSide)}
-          onClick={this.toStudio}
-        >
-          <div className={classes.rightText}>STUDIO</div>
-        </div>
-      </div>
+        <div className={classes.sign}>COMING SOON</div>
+      </React.Fragment>
     );
   }
 }
