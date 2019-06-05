@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 
+import "./coming-soon.css";
+
 const styles = theme => ({
   landingContainer: {
     display: "flex",
@@ -39,19 +41,33 @@ const styles = theme => ({
     bottom: "250px",
     fontSize: "80px"
   },
+  signContainer: {
+    display: "flex",
+    flexDirection: "column",
+    zIndex: 2,
+    position: "absolute",
+    top: 70,
+    left: "25%"
+  },
   sign: {
-    backgroundColor: "black",
-    color: "white",
     width: "70%",
     height: 80,
     fontSize: 30,
-    zIndex: 2,
-    position: "absolute",
-    top: 80,
-    left: "15%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
+  },
+  message: {
+    width: "70%",
+    height: 80,
+    fontSize: 30,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  instaLink: {
+    textDecoration: "none",
+    fontStyle: "italics",
+    color: "black"
   }
 });
 
@@ -64,8 +80,15 @@ class LandingPage extends PureComponent {
     this.props.history.push("/studio");
   };
 
+  toInstagram = () => {
+    this.props.history.push("/insta");
+  };
+
   render() {
     const { classes } = this.props;
+    const createText = () => ({
+      __html: `Este sitio esta en construcción, si queres saber acerca de Gabinete Exquisito podes entrar a nuestro <a target='_blank' href={'https://www.instagram.com/gabinetexquisito/'} class="instaLink">Instagram</a> o mandarnos un mail a: gabienteexquisito@gmail.com`
+    });
     return (
       <React.Fragment>
         <div className={classes.landingContainer}>
@@ -82,7 +105,13 @@ class LandingPage extends PureComponent {
             <div className={classes.rightText}>STUDIO</div>
           </div>
         </div>
-        <div className={classes.sign}>COMING SOON</div>
+        <div className={classes.signContainer}>
+          <div className={classes.sign}>Ya vienen los peores de la clase</div>
+          <div
+            className={classes.message}
+            dangerouslySetInnerHTML={createText()}
+          />
+        </div>
       </React.Fragment>
     );
   }
