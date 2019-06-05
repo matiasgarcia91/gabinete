@@ -73,11 +73,13 @@ const styles = theme => ({
 
 class LandingPage extends PureComponent {
   toShop = () => {
-    this.props.history.push("/shop");
+    //this.props.history.push("/shop");
+    return;
   };
 
   toStudio = () => {
-    this.props.history.push("/studio");
+    //this.props.history.push("/studio");
+    return;
   };
 
   toInstagram = () => {
